@@ -7,7 +7,7 @@ import java.util.concurrent.RecursiveTask;
 
 /**
  * @author Gecx
- * @Description: 计算从1-100的
+ * @Description: 计算从1-100的和
  * @date 2019/4/22 21:36
  */
 public class UseForkJoin {

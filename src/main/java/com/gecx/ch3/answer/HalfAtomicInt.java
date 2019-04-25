@@ -19,8 +19,7 @@ public class HalfAtomicInt {
     public void increament() {
         for (; ; ) {
             int current = getCount();
-            int next = current + 1;
-            if (compareAndSet(current++, next)) {
+            if (compareAndSet(current, ++current)) {
                 System.out.println("执行成功！当前值为：" + getCount());
                 break;
             } else {

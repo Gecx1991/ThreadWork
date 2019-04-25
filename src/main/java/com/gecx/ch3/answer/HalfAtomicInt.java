@@ -21,7 +21,10 @@ public class HalfAtomicInt {
             int current = getCount();
             int next = current + 1;
             if (compareAndSet(current++, next)) {
+                System.out.println("执行成功！当前值为：" + getCount());
                 break;
+            } else {
+                System.out.println("执行失败！当前值为：" + getCount() + " 尝试继续执行");
             }
         }
     }
@@ -45,16 +48,15 @@ public class HalfAtomicInt {
 
         @Override
         public void run() {
-            SleepTools.ms(200);
             atomicInt.increament();
-//            latch.countDown();
         }
     }
 
 
     public static void main(String[] args) throws InterruptedException {
         HalfAtomicInt atomicInt = new HalfAtomicInt();
-        for (int i = 0; i < 100; i++) {
+        int count = 200;
+        for (int i = 0; i < count; i++) {
             new Thread(new AtomicIncrThread(atomicInt)).start();
         }
         SleepTools.second(3);

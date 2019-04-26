@@ -19,6 +19,8 @@ public class HalfAtomicInt {
     public void increament() {
         for (; ; ) {
             int current = getCount();
+            //两次getCount()读取的共享变量可能不一致了
+            //compareAndSet(getCount(), getCount()+1);
             if (compareAndSet(current, ++current)) {
                 System.out.println("执行成功！当前值为：" + getCount());
                 break;
